@@ -1,0 +1,184 @@
+Design Notes for the TP-Link Device to SmartThings Cloud Integration.
+
+Contents:
+I.	Bulb API notes.
+II.	Plug API notes.
+III.	HS110 Energy Meter API notes.
+IV.	Bulb Device Handler design notes.
+V.	Plug Device Handler design notes.
+VI.	Energy Meter design notes.
+
+I.	Bulb API Notes.  Bulb API factors affecting programming.
+	a.	The value ignore_default=0 allows user to turn on of the
+		bulb while setting other values.  This capability is
+		implemented in these device handlers.
+		1.	Brightness
+		2.	Color Temperature
+		3.	Color (through color wheel).
+	b.	The bulb has a value 'transition_time' that allows fade
+		in and fade out.  This is not implemented since it is
+		not a function of the Kasa App.
+	c.	Circadian Mode.  The setting of mode to Circadian starts
+		a subprogram that sets brightness and color temperature
+		to match natural light.  Changing brightness, color_temp,
+		or color drops the bulb out of circadian mode, as does
+		setting mode to normal.  Setting mode to normal sets the
+		bulb to the last circadian mode settings.  Finally, 				turning the bulb off while in circadian mode will change 
+		the mode to normal.
+	d.	Color.  For the LB-130 to be in color, the color_temp
+		must be '0'.  Any other value will drop the bulb out of
+		color.
+	e.	Each 'transition_light_state' command sent to the bulb 
+		returns a message automatically with the current bulb
+		lighting state.  The message format changes depending on
+		the value of on/off.
+	f.	Sending the get_sysinfo command (common with the bulb)
+		returns a verbose state of the bulb, which includes the
+		light states.  As above, this data is different based on
+		the value of on/off.
+	g.	WiFi communications with the bulbs has had several reports
+		of dropping off without apparent cause.
+
+II.	Plug API notes.  The Plug and Switch API factors affecting
+	programming.
+	a.	On sending an on/off command to the device, the automatic
+		return message consists only of the error code ('0' is
+		good, '-1' is bad).  The get_sysinfo command is required
+		to derive the actual state of the device.
+
+III.	HS110 and Energy Meter API notes.  The Energy Meter function is 
+	intended to implement the energy monitor status of the HS110.
+	a.	The command 'get_realtime' contains the current power
+		level of the HS100 in kilowatts.
+	b.	The command 'get_daystat' contains a user-defined calendar
+		month of energy consumption in kilowatt-hours.
+	c.	The total 'get_daystat' database is 31 days, usually 				spread over two months and including today's data.
+	d.	The 'get_daystat' database increments another day based on
+		the HS110's time - which is local time for the device if
+		properly set.
+	e.	The command 'get_time' returns the year, day, month,
+		hour, minute, and second for the plugs.
+
+IV.	Bulb Device Handler design notes.
+	a.	State-Machine. The DH - applet - device interface uses
+		the SmartThing cloud as the State machine.  Counter to
+		SmartThing's standard shoot-and-forget, when a command is 
+		selected by the user, the state is not updated until a
+		response is received from the device.  This is done due 
+		to:
+		1.	The complexity of the interface.
+		2.	The aforementioned problems with the bulbs and WiFi.
+		3.	The use of HubActionRequest and Responses which
+			(very infrequently) has problems.
+		4.	The author's view that the ST Application state 
+			should reflect the known state, not the commanded 
+			(people are using this for security at times).
+		5.	Although not yet implemented, these actual states can
+			lead to some automated corrective actions within the
+			Device Handler and can also guide the uses with other
+			corrective actions.
+	b.	HubActionResponse.  There are several based on the 
+		expected return data from the sent command.  It is cleaner 
+		and requires fewer if statements.
+	c.	On-off state has five possible values, on, off, 
+		turning_on, turning_off, and comms_error.  These are 
+		color-coded for user convenience.
+	d.	Brightness is set via a slider with values between 0 and
+		100%.  
+		1.	Setting the on bulb to 0% DOES NOT turn off the bulb.
+			It is the lowest possible value.  
+		2.	Brightness must be an integer.  
+		3.	Adjusting the brightness on an off bulb will turn the
+			bulb on to the selected brightness with other values
+			at the last state (the 'dft_on_state').
+		4.	Adjusting the brightness when the bulb is in 
+			Circadian mode will set the bulb in Normal mode, 
+			brightness as selected and color temperature at the 
+			last value.
+	e.	Color temperature is set via a second slider with with 
+		value of 2700 to 6500 for the LB120 and 2500 and 9000 for
+		the LB130.
+		1.	Adjusting color temperature on an off bulb will turn
+			the bulb on to the selected color temperature with
+			other values based on 'dft_on_state'.
+		2.	Adjusting the color temperature to anything while the
+			bulb is set to color will transition out of color to
+			the selected color temperature and the last value for
+			brightness.
+		3.	Adjusting the color temperature when the bulb is in
+			Circadian mode will set the bulb in Normal mode,
+			color temperature as selected and brightness at the
+			last value.
+	f.	Color is set via selection of the color wheel the visual
+		selection of the color on the next page.  The selected
+		values are biased to match the bulb's range of color.
+		1.	Adjusting color on an off bulb will turn the bulb on
+			to the selected color with other values based on
+			'dft_on_state', except color temperature ('0').
+		2.	Adjusting the color when the bulb is in Circadian 
+			mode will set the bulb in Normal mode,color as 
+			selected, brightness at the last value, and color 
+			temperature at '0'.
+	g.	Refresh is called automatically by the SmartThings cloud
+		every 15 minutes.  It updates the operational state of the
+		bulb to current.  It can also be triggered by user action.
+
+V.	Plug Device Handler design notes.
+	a.	State-Machine. The DH - applet - device interface uses
+		the SmartThing cloud as the State machine, as described in
+		VI.a.  
+	b.	HubActionResponse.  There are several based on the 
+		expected return data from the sent command.  It is cleaner 
+		and requires fewer if statements.
+	c.	On-off state has five possible values, on, off, waiting, 
+		and comms_error.  These are color-coded for user 
+		convenience.
+	d.	Turning on or off the device causes two commands to be 
+		sent:
+		1.	The on-off command with a response from the device
+			being an error message only.
+		2.	The 'get_sysinfo" command that returns the 
+			operational state data from the device.  This return 
+			is parsed to attain the current state of the device.
+	e.	Refresh is called automatically by the SmartThings cloud
+		every 15 minutes.  It updates the operational state of the
+		bulb to current.  It can also be triggered by user action.
+
+VI.	HS110 Energy Meter design notes.  There are six tiles in the
+	energy meter implementation, parroting the tiles within the
+	TP-Link Kasa application.
+	a.	Current Power is the power consumption in watts derived
+		from the return to the 'get_realtime' command.
+	b.	Todays Usage is the total KWH for the day extracted from 
+		the 'get_daystat' command response for the current month.
+	c.	7 Day Total and 7 Day Average are derived from the
+		'get_daystat' response for the current month and (as
+		required) the previous month.  The 7 days start at
+		yesterday and go back.
+	d.	30 Day Total and 30 Day Average are derived from two 
+		months of 'get_daystat' data (a total of 31 records).  The 
+		current day is parsed out in deriving the average.
+	e.	Special consideration in handling the 'get_daystat' 
+		return.
+		1.	The data comes in two separate hubActionResponses, so
+			totals must be carried through the two calls.
+		2.	Year transition is determined if the current month is
+			1.  Then the pervious year month 12 is requested.
+		3.	Week transition across month is handled by adding the
+			total day from the previous month then calculating
+			backward, avoiding negative numbers.
+	f.	Power on/off and Refresh are enhanced.  When these are
+		called, Current Power and Todays Usage are updated.
+	g.	Refresh Stats is a manual refresh capability for the Week
+		and Month Stats.
+	h.	Polling is automatic through SmartThings using Refresh.
+	i.	Obtaining the current day data (year, month, day of month)
+		is scheduled to occur twice a day.
+	j.	The Week and Month stats are scheduled o occur twice a day
+		(to be resolved).
+	k.	Updated.  From the settings page, depressing 'Done' will
+		cause the 'Updated' routine to run.  This routine:
+		1.	Schedules the get date and the get week and month
+			stats functions.
+		2.	Runs once the get date, refresh, and week / month
+			stats functions.
