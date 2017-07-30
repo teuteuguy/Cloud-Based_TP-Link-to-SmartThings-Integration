@@ -1,4 +1,4 @@
-Hub-Based TP-Link Bulb, Plug, and Switch SmartThing Integration
+# Hub-Based TP-Link Bulb, Plug, and Switch SmartThing Integration
 
 Two versions of TP-Link to Smart Things Integraion now exist:
 
@@ -14,7 +14,7 @@ b. Cloud-Based TP-Link to Smart Things Integraion: The new version (currently in
     Must have TP-Link account.
     Simpler setup. Install Service Manager and applicable device handlers. Runs service Manager.
 
-Cloud-Based Pre-requisites:
+# Cloud-Based Pre-requisites:
 
 a.  A valid TP-Link Kasa account (must have login name and password.
 
