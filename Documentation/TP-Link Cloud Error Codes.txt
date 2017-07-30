@@ -1,0 +1,25 @@
+Error Messages from the TP-Link Cloud
+
+
+[error_code:-20104, msg:Parameter doesn't exist]
+cause:  improper format of message
+
+
+cause:  device is turned off or not on local wifi
+[error_code:-20571, msg:Device is offline] in sendDeviceCmd
+
+
+[error_code:-20580, msg:Account is not binded to the device]
+cause:  device is 'local only'
+
+
+[error_code:-20600, msg:Account not found] in getToken]
+cause:  invalid username
+
+
+[error_code:-20615, msg:Password format error] in getToken]
+cause:  invalid password
+
+
+[error_code:-20651, msg:Token expired]
+cause:  incorrect (expired) token
