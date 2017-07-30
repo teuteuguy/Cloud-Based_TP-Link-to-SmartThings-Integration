@@ -31,7 +31,7 @@ upon open-source data on the TP-Link devices; primarily various users on GitHub.
 */
 
 metadata {
-	definition (name: "TP-LinkLB110-120", namespace: "beta", author: "Dave Gutheinz") {
+	definition (name: "TP-LinkLB100-110", namespace: "beta", author: "Dave Gutheinz") {
 		capability "Switch"
 		capability "Switch Level"
 		capability "refresh"
