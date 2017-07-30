@@ -22,6 +22,8 @@ b.  TP-Link devices installed and in 'Remote Control' mode (done in Kasa App)
 
 Caveate:  The author is not associated with the company TP-Link except as an owner/consumer of their products.  All date used to create thes applets was garnered from public-domain data.
 
+<img src="https://github.com/DaveGut/Cloud-Based_TP-Link-to-SmartThings-Integration/blob/master/FamilyPic.png" align="center"/>
+
 TP-Link Devices Supported:
 
     HS100, Hs105, HS110, HS200 - TP-Link_HS_Series.groovy
