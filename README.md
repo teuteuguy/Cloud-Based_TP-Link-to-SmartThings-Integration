@@ -1,4 +1,4 @@
-# Hub-Based TP-Link Bulb, Plug, and Switch SmartThing Integration
+# Cloud-Based TP-Link Bulb, Plug, and Switch SmartThing Integration
 
 Two versions of TP-Link to Smart Things Integraion now exist:
 
