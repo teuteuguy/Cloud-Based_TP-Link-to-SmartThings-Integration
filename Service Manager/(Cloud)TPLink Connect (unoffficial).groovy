@@ -171,7 +171,7 @@ def addDevices() {
 	tpLinkModel << ["HS110" : "TP-LinkHS-Series"]
 	tpLinkModel << ["HS200" : "TP-LinkHS-Series"]
 	tpLinkModel << ["LB100" : "TP-LinkLB100-110"]
-	tpLinkModel << ["LB110" : "TP-LinkLB110-110"]
+	tpLinkModel << ["LB110" : "TP-LinkLB100-110"]
 	tpLinkModel << ["LB120" : "TP-LinkLB120"]
 	tpLinkModel << ["LB130" : "TP-LinkLB130"]
 	def hub = location.hubs[0]
