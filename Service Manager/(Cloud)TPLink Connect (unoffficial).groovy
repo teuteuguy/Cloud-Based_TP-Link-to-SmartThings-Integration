@@ -37,7 +37,7 @@ on the TP-Link devices; primarily various users on GitHub.com.
 
 definition(
 	name: "TP-Link (unofficial) Connect",
-	namespace: "beta test",
+	namespace: "beta",
 	author: "Dave Gutheinz",
 	description: "A Service Manager for the TP-Link devices connecting through the TP-Link Cloud",
 	category: "SmartThings Labs",
