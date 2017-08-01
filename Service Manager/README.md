@@ -31,7 +31,7 @@ A.  Install the Service Manager ("TPLink Connect (unoffficial).groovy")
     
 B.  Install your selected Device Handlers.
 
-(Note:  Do not select the Energy Monitor version for initial installation.  See below).
+Note:  Do not select the Energy Monitor version for initial installation.  See below to install later.
 
     1)  Open the 'My Device Handlers' tab.
     
