@@ -32,7 +32,9 @@ B.  Install your selected Device Handlers.
     
 C.  From your smart phone SmartThings application:
 
-(Note:  to be detected, the bulb must be set to 'remote control' in the device's options in the Kasa App)
+Note 1:  To be detected, the bulb must be set to 'remote control' in the device's options in the Kasa App.
+
+Note 2:  The Service Manager will attain the token from TP-Link for you.  Do not do this yourself.
 
     1)  Select "Automation" (at bottom), then the 'SmartApps' tab
     
@@ -64,7 +66,7 @@ In the folder "Device Handlers":
 
 1.  (Cloud)TPLinkHS-Series.groovy - Device Handler for the TP-Link HS Series (HS100, HS105, HS110, HS200) plugs/switches.
 
-2  (Cloud)TPLinkLB100-110.groovy - Device Handler for the TP-Link HS100 and HS110 bulbs.
+2.  (Cloud)TPLinkLB100-110.groovy - Device Handler for the TP-Link HS100 and HS110 bulbs.
 
 3.  (Cloud)TPLinkLB120.groovy - Device Handler for the TP-Link LB120 bulb.
 
