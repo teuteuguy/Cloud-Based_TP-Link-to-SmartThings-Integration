@@ -32,7 +32,9 @@ B.  Install your selected Device Handlers.
     
 C.  From your smart phone SmartThings application:
 
-(Note:  to be detected, the bulb must be set to 'remote control' in the device's options in the Kasa App)
+Note 1:  To be detected, the bulb must be set to 'remote control' in the device's options in the Kasa App.
+
+Note 2:  The Service Manager will attain the token from TP-Link for you.  Do not do this yourself.
 
     1)  Select "Automation" (at bottom), then the 'SmartApps' tab
     
