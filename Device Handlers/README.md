@@ -69,7 +69,7 @@ In the folder "Device Handlers":
 
 1.  (Cloud)TPLinkHS-Series.groovy - Device Handler for the TP-Link HS Series (HS100, HS105, HS110, HS200) plugs/switches.
 
-2.  (Cloud)TPLinkLB100-110.groovy - Device Handler for the TP-Link HS100 and HS110 bulbs.
+2.  (Cloud)TPLinkLB100-110.groovy - Device Handler for the TP-Link LB100 and LB110 bulbs.
 
 3.  (Cloud)TPLinkLB120.groovy - Device Handler for the TP-Link LB120 bulb.
 
