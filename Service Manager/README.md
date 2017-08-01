@@ -33,7 +33,7 @@ B.  Install your selected Device Handlers.
 
 (Note:  Do not select the Energy Monitor version for initial installation.  See below).
 
-    1)  Open the 'My Device Hsndlers' tab.
+    1)  Open the 'My Device Handlers' tab.
     
     2)  Follow the same instructions as in A (above) for each device type you have.
     
