@@ -12,18 +12,22 @@ This package is for the SmartThings integration of TP-Link bulbs and plugs throu
 
 A.  Install the Service Manager ("TPLink Connect (unoffficial).groovy")
 
-    1)  Log onto the IDE and open the mySmartApps tab
+    1)  Log onto the IDE
         a)  From community page, upper right side, select "COMMUNITY"
         b)  Upper right:  "Additional Resources"   "Developer Tools"
         c)  Log-in or follow instructions to obtain an account.
 
-    2)  Select '+New SmartApp' at the top-right
+    2)  Select the 'My Location' Tab and select your locaton.
     
-    3)  Select the 'From Code' tab
+    3)  Select the 'My SmartApps' Tab.
 
-    4)  Paste the contents of the file into the space.
+    4)  Select '+New SmartApp' at the top-right
     
-    5)  Select 'Create then' 'Publish'.
+    5)  Select the 'From Code' tab
+
+    6)  Paste the contents of the file into the space.
+    
+    7)  Select 'Create then' 'Publish'.
     
 B.  Install your selected Device Handlers.
 
