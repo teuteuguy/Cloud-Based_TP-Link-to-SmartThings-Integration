@@ -1,3 +1,9 @@
+# Cloud Beta Updates
+08-02 - Updated page text and error messages in Service Manager.
+
+08-02 - Created 'Cloud TP-Link to SmartThing Installation.pdf' more detailed installation instruction than in read.me files.
+
+
 # Cloud-Based TP-Link Bulb, Plug, and Switch SmartThing Integration
 
 Two versions of TP-Link to Smart Things Integraion now exist:
