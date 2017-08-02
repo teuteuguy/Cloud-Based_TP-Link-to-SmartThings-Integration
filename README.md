@@ -39,12 +39,13 @@ Caveate:  The author is not associated with the company TP-Link except as an own
 TP-Link Devices Supported:
 
     HS100, Hs105, HS110, HS200 - TP-Link_HS_Series.groovy
-    HS110 with energy monitor functions - TP-Link_HS110_Emeter.groovy
     LB100, LB110 - TP-Link_LB100_110.groovy
-    LB110 with energy monitor functions - TP-Link_LB110_Emeter.groovy
     LB120 - TP-Link_LB120.groovy
-    LB120 with energy monitor functions - TP-Link_LB120_Emeter.groovy
     LB130 - TP-Link_LB130.groovy
+    ENERGY MONITOR VARIANTS
+    HS110 with energy monitor functions - TP-Link_HS110_Emeter.groovy
+    LB110 with energy monitor functions - TP-Link_LB110_Emeter.groovy
+    LB120 with energy monitor functions - TP-Link_LB120_Emeter.groovy
     LB130 with energy monitor functions - TP-Link_LB130_Emeter.groovy
 
 Installation instructions can be found in the documentation folder.
