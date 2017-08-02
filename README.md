@@ -1,6 +1,6 @@
 # Cloud Beta Updates and Objectives
     08-02 - Updated page text and error messages in Service Manager.
-    08-02 - Created 'Cloud TP-Link to SmartThing Installation.pdf'.
+    08-02 - Created 'Cloud TP-Link to SmartThing Installation.pdf'. (Short form still in read.me files.)
 
 Objectives of Cloud Beta:
 
